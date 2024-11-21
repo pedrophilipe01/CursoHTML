@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercícios HTML</title>
+    <style>
+        #conteudo {
+            padding: 30px 0px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercícios HTML</h1>
+    </header>
+    <nav>
+        <a href wm-nav="teste.html">00 - Teste</a> <br>
+        <a href wm-nav="texto1.html">01 - Texto 1</a> <br>
+        <a href wm-nav="texto2.html">02 - Texto 2</a> <br>
+        <a href wm-nav="exercicios/listas.html">03 - Listas</a> <br>
+        <a href wm-nav="exercicios/listaAninhada.html">04 - Lista Aninhada</a> <br>
+        <a href wm-nav="exercicios/links.html">05 - Links</a> <br>
+        <a href wm-nav="exercicios/tabela.html">06 - Tabela</a> <br>
+        <a href wm-nav="exercicios/form/form.html">07 - Formulário</a> <br>
+        <a href wm-nav="exercicios/imagens.html">08 - Imagens</a> <br>
+        <a href wm-nav="exercicios/video.html">09 - Vídeo</a> <br>
+        <a href wm-nav="exercicios/tagsNaoVisuais.html">10 - Tags Não Visuais</a> <br>
+    </nav>
+    <section id="conteudo"></section>
+    <footer>
+        Curso de Web Moderno
+    </footer>
+    <script>
+        //criando uma navegação mais rápida e fluida, para carregar dinamicamente conteúdos um uma página sem a necessidade de recarregá-lo completamente.
+
+        //document.querySelectorAll: essa funcao retorna a lista de elementos que possuem o atributo wm-nav// 
+
+        //forEach:percorre todos os elementos selecionados e adiciona a eles um evento onclick//
+
+        //e.preventDefault:pede o comportamento padrão do clique no link, que seria ir para outra pag
+
+        //get attribute:recupera o valor do atributo wm-nav do link
+
+        //chamar o id é #id e chamar class é .class
+
+        document.querySelectorAll('[wm-nav]').forEach(link => {
+            const conteudo = document.getElementById('conteudo')
+            
+            link.onclick = function(e) {
+                e.preventDefault()
+                fetch(link.getAttribute('wm-nav'))
+                    .then(resp => resp.text())
+                    .then(html => conteudo.innerHTML = html)
+            }
+        })
+    </script>
+</body>
+</html>
